@@ -97,25 +97,15 @@ function Homepage() {
         </div>
       </div>
       <div>
-        <NavLink to='/Olipaint'><img src='Assets/Home4.WEBP' className='home-img2' alt='' /></NavLink>
-        <div className='homepage2'>
-          <div className='home-image-column'>
-            <img src="Assets/Wall/Wallvases/Vas3.jpg" alt='' /><NavLink to="/Wallvases"><p>Wall Vases</p></NavLink>
-          </div>
-          <div className='home-image-column'>
-            <img src="Assets/Wall/Wallplates/Wallplate8.jpg" alt='' /><NavLink to="/Wallplates"><p>Wall Plates</p></NavLink>
-          </div>
-          <div className='home-image-column'>
-            <img src="Assets/Wall/Framedart/Frame2.jpg" alt='' /><NavLink to="/Framedart"><p>Framed Wall Art</p></NavLink>
-          </div>
-          <div className='home-image-column'>
-            <img src="Assets/Wall/Olipaint/Oil4.jpg" alt='' /><NavLink to="/Olipaint"><p>Oil Paints</p></NavLink>
-          </div>
-          <div className='home-image-column'>
-            <img src="Assets/Wall/Wallmirror/Mirror6.jpg" alt='' /><NavLink to="/Wallmirror"><p>Mirrors</p></NavLink>
-          </div>
-          <div className='home-image-column'>
-            <img src="Assets/Wall/Wallvases/Vas1.jpg" alt='' /><NavLink to="/Wallvases"><p>Wall Vases</p></NavLink>
+        <div className='store-text'>
+          <div className='store-list2'>
+            {/* <img src="Assets/Wall/Wallvases/Vas3.jpg" alt='' /> */}
+            <img src='Assets/Wall/Wallvases/Vas3.jpg' alt='stor' />
+            <img src='Assets/Wall/Wallplates/Wallplate8.jpg' alt='stor' />
+            <img src='Assets/Wall/Framedart/Frame2.jpg' alt='stor' />
+            <img src="Assets/Wall/Olipaint/Oil4.jpg" alt='stor' />
+            <img src='Assets/Wall/Wallmirror/Mirror6.jpg' alt='stor' />
+            <img src='Assets/Wall/Wallvases/Vas1.jpg' alt='stor' />
           </div>
         </div>
       </div>

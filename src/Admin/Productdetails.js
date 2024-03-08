@@ -26,7 +26,6 @@ function Productdetails() {
     }, [])
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className='product-details'>
                 {product.category === 'Crystel' && (
                     <img src={`http://localhost:1202/uploads/Decor/Crystel/${product.productImage}`} alt={product.productName} />

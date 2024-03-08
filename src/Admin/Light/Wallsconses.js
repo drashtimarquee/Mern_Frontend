@@ -43,7 +43,7 @@ function Wallsconses() {
         <div className='decor-page'>
             {/* <div className='home-space'></div> */}
             <div className='decor'>
-                <img className='home-img' src='Assets/Lighting/Back.webp' alt='' />
+                <img className='home-img' src='Assets/Lighting/Backwallsconses.webp' alt='' />
             </div>
             <Light />
             <h1>WALL SCONSES</h1>

@@ -43,7 +43,7 @@ function Tablelamp() {
         <div className='decor-page'>
             {/* <div className='home-space'></div> */}
             <div className='decor'>
-                <img className='home-img' src='Assets/Lighting/Back.webp' alt='' />
+                <img className='home-img' src='Assets/Lighting/Backtable.webp' alt='' />
             </div>
             <Light />
             <h1>TABLE LAMPS</h1>

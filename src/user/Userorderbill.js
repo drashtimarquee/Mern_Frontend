@@ -1,13 +1,26 @@
 import { useAuth } from '../components/Pages/Usercontax';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function Userorderbill({ location = {} }) {
   const [userauth, setUserauth] = useAuth();
   const [orders, setOrders] = useState([]);
+  const { id } = useParams();
+
+
+  const singleorder = async () => {
+    const { data } = await axios.get(`http://localhost:1202/userorderdata/${id}`);
+    console.log(data)
+    setOrders(data.orders)
+  }
+
+  useEffect(() => {
+    singleorder();
+  }, []);
 
   return (
     <div className='userlist'>
-      {/* <div className='home-space'></div> */}
       <h1>{`Hello ${userauth?.token && userauth?.user?.Fname} your order is here`}</h1>
       <div>
         <table>

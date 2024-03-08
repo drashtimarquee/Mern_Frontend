@@ -43,10 +43,10 @@ function Livingroom() {
         <div className='decor-page'>
             {/* <div className='home-space'></div> */}
             <div className='decor'>
-                <img className='home-img' src='Assets/Lighting/Back.webp' alt='' />
+                <img className='home-img' src='Assets/Lighting/Backliving.webp' alt='' />
             </div>
             <Light />
-            <h1>LIVINGROOM LIGHT</h1>
+            <h1>FLOOR LIGHT</h1>
             <div className='decor-page-api '>
                 {
                     product.map((val) => (

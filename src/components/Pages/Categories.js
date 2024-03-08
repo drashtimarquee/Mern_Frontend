@@ -24,11 +24,11 @@ const data1 = [
         name: `New Arrival`,
     },
     {
-        key: 2,
+        key: 4,
         name: `Furniture`,
     },
     {
-        key: 2,
+        key: 5,
         name: `Lighting`,
     }
 ];
