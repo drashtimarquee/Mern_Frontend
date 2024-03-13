@@ -35,7 +35,6 @@ function Orderlist() {
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>Status</th>
                             <th>User ID</th>
                             <th>Date</th>
                             <th>User Name</th>
@@ -57,12 +56,6 @@ function Orderlist() {
                             orders.map((order) => (
                                 <tr key={order._id}>
                                     <td>{order._id}</td>
-                                    <td></td>
-                                    {/* <td><select bordered={false} onChange={(value) => handlechange(order._id, value)}>
-                                    {status.map((s, i) => {
-                                        <option>{s.status}</option>
-                                    })}
-                                </select></td> */}
                                     <td>{order.userId}</td>
                                     <td>{new Date(order.createdAt).toLocaleString()}</td>
                                     <td>{`${order.shippingAddress.firstName} ${order.shippingAddress.lastName}`}</td>

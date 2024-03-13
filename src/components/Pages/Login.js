@@ -25,7 +25,6 @@ const Login = () => {
             if (response.status === 200) {
                 setUserauth({ ...userauth, user: response.data.user, token: response.data.token });
                 localStorage.setItem("auth", JSON.stringify(response.data));
-                // navigate("/");
                 if (response.data.user.Role === 1) {
                     navigate("/Dashboard/admin");
                 } else {
@@ -40,7 +39,6 @@ const Login = () => {
 
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className="form">
                 <div className="formbody">
                     <form onSubmit={login}>

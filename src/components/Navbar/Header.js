@@ -5,8 +5,6 @@ import { useCart } from '../../components/Pages/Cartcontax';
 import { FaRegHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 
-
-
 function Navbar() {
     const [userauth, setUserauth] = useAuth();
     const [menu, setMenu] = useState("");

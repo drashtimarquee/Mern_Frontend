@@ -8,7 +8,6 @@ function Success() {
 
   return (
     <div>
-      {/* <div className='home-space'></div> */}
     </div>
   )
 }

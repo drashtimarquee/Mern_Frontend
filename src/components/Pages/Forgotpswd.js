@@ -23,7 +23,6 @@ const Forgotpswd = () => {
 
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className="form">
                 <div className="formbody">
                     <form onSubmit={passwordreset}>

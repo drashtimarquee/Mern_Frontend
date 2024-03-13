@@ -4,7 +4,6 @@ function About() {
 
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <img src='Assets/About1.webp' alt='' className='about-img' />
             <div className="bg-text">
                 <h1>OUR STORY</h1>

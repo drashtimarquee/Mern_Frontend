@@ -9,16 +9,14 @@ function Usercontax({ children }) {
         user: null,
         token: ""
     });
-
-    axios.defaults.headers.common["Authorization"] = userauth?.token
-
+    axios.defaults.headers.common["Authorization"] = userauth?.token;
     useEffect(() => {
         const userdata = localStorage.getItem("auth")
         if (userdata) {
             const parsedata = JSON.parse(userdata)
             setUserauth({ ...userauth, user: parsedata.user, token: parsedata.token })
         }
-    })
+    }, [])
     return (
         <div>
             <Authcontext.Provider value={[userauth, setUserauth]} >

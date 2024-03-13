@@ -85,7 +85,6 @@ const Register = () => {
 
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className="form">
                 <h1>REGISTRATION  FORM</h1>
                 <div className="formbody">
@@ -94,23 +93,18 @@ const Register = () => {
                             <input id="Fname" className="forminput" type="text" placeholder="enter your fname"
                                 onChange={(e) => setFname(e.target.value)} /><br />
                             {fnameError && <span style={{ color: "red", marginLeft: "47px" }}>{fnameError}</span>}
-
                             <input id="Lname" className="forminput" type="text" placeholder="enter your lname"
                                 onChange={(e) => setLname(e.target.value)} /><br />
                             {lnameError && <span style={{ color: "red", marginLeft: "47px" }}>{lnameError}</span>}
-
                             <input id="email" className="forminput" type="email" placeholder="enter your email"
                                 onChange={(e) => setEmail(e.target.value)} /><br />
                             {emailError && <span style={{ color: "red", marginLeft: "47px" }}>{emailError}</span>}
-
                             <input id="address" className="forminput" type="text" placeholder="enter your address"
                                 onChange={(e) => setAddress(e.target.value)} /><br />
                             {addressError && <span style={{ color: "red", marginLeft: "47px" }}>{addressError}</span>}
-
                             <input id="Password" className="forminput" type="password" placeholder="enter your password"
                                 onChange={(e) => setpassword(e.target.value)} /><br />
                             {passwordError && <span style={{ color: "red", marginLeft: "47px" }}>{passwordError}</span>}
-
                             <input id="Cpassword" className="forminput" type="password" placeholder="enter your  confirm password"
                                 onChange={(e) => setCpassword(e.target.value)} /><br />
                             {cpasswordError && <span style={{ color: "red", marginLeft: "47px" }}>{cpasswordError}</span>}

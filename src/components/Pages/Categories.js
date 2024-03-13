@@ -36,7 +36,6 @@ const data1 = [
 function Categories() {
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className='mt-4'>
                 <h3 className='mb-4 text-center pb-3'>PRODUCT CATEGORIES</h3>
                 <div>

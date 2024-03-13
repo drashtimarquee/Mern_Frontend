@@ -5,9 +5,8 @@ import { NavLink } from 'react-router-dom'
 function Home() {
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className='decor'>
-                <img className='home-img' src='Assets/Decor/Back.webp' alt='' />
+                <img className='home-img' src='Assets/Decor/Back.webp' alt='back' />
             </div>
             <Decor />
             <div className='candlestand-decor'>

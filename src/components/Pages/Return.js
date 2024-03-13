@@ -3,7 +3,6 @@ import React from 'react'
 function Return() {
     return (
         <div className='Return-page'>
-            {/* <div className='home-space'></div> */}
             <h1>Cancellations Returns</h1>
             <h3>Return Policy</h3>
             <p>Our return policy is very flexible and customer friendly, we try to accommodate our patrons as<br />

@@ -3,7 +3,6 @@ import React from 'react'
 function Refund() {
     return (
         <div className='refund'>
-            {/* <div className='home-space'></div> */}
             <h1>Refund policy</h1>
             <p>The Decor Kart endeavors to ensure that every transaction at our website is seamless. We take<br />
                 great care in delivering our products and adhere to the highest quality standards. As a policy, <br />

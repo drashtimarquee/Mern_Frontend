@@ -3,7 +3,6 @@ import React from 'react'
 function Privacy() {
     return (
         <div className='privacy'>
-            {/* <div className='home-space'></div> */}
             <h1>Privacy policy</h1>
             <h6>What personal information do we collect from the people that visit our blog, website or app?</h6>
             <p>When ordering or registering on our site, as appropriate, you may be asked to enter your name, <br />

@@ -3,62 +3,63 @@ import axios from 'axios';
 import Decor from './Decor';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useCart } from '../../components/Pages/Cartcontax';
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useWishlist } from '../../components/Pages/Wishlistcontaxt';
 
-
-function Incenseholder() {
+function Decorstorage() {
     const [product, setProduct] = useState([]);
     const navigate = useNavigate();
     const [cart, setcart] = useCart();
     const [wishlist, setWishlist] = useWishlist();
-    const [isHovered, setIsHovered] = useState(false);
+    const [hoveredProduct, setHoveredProduct] = useState(null);
 
     function addtowishlist(val) {
         setWishlist([...wishlist, val])
         localStorage.setItem("wishlist", JSON.stringify([...wishlist, val]))
         alert('Item Added To wishlist')
     }
-
     function addtocart(val) {
         setcart([...cart, val])
         localStorage.setItem("cart", JSON.stringify([...cart, val]))
         alert("item added to cart")
     }
 
-    async function allincenseholder() {
+    async function allcrystel() {
         try {
             const response = await axios.get("http://localhost:1202/product/Incenseholder");
             if (response.status === 200) {
                 setProduct(response.data.products);
             }
         } catch (error) {
-            console.error("Error Fetching Data", error)
+            console.error("Error fetching data:", error);
         }
     }
 
     useEffect(() => {
-        allincenseholder();
+        allcrystel();
     }, []);
 
     return (
         <div className='decor-page'>
-            {/* <div className='home-space'></div> */}
             <div className='decor'>
-                <img className='home-img' src='Assets/Decor/Backhuman.webp' alt='finep' />
+                <img className='home-img' src='Assets/Decor/Backincense.webp' alt='pht' />
             </div>
             <Decor />
-            <h1>INCENSE HOLDER</h1>
+            <h1>INCENSEHOLDER</h1>
             <div className='decor-page-api '>
                 {
-                    product.map((val) => (
-                        <tr key={val._id}>
+                    product.map((val, index) => (
+                        <tr key={index}>
                             <td>
                                 {val.category === 'Incenseholder' && (
                                     <div className="product-container">
                                         <img src={`http://localhost:1202/uploads/Decor/Incenseholder/${val.productImage}`} alt={val.productName} />
-                                        <NavLink to='/Wishlist' onClick={() => addtowishlist(val)}>
-                                            <FaRegHeart className={`favourite-icon ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} />
+                                        <NavLink onClick={() => addtowishlist(val)}>
+                                            {hoveredProduct === index ? (
+                                                <FaHeart className="favourite-icon" />
+                                            ) : (
+                                                <FaRegHeart className="favourite-icon" onMouseEnter={() => setHoveredProduct(index)} onMouseLeave={() => setHoveredProduct(null)} />
+                                            )}
                                         </NavLink>
                                     </div>
                                 )}
@@ -81,4 +82,4 @@ function Incenseholder() {
     );
 }
 
-export default Incenseholder;
+export default Decorstorage;

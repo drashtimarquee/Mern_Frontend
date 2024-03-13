@@ -5,7 +5,6 @@ function Admin() {
   const [userauth, setUserauth] = useAuth();
   return (
     <div>
-      {/* <div className='home-space'></div> */}
       <div className='user-dashboard'>
         <div className='user-dash-details'>
           <h1>User-Details</h1>

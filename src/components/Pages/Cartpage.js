@@ -3,7 +3,6 @@ import { useCart } from './Cartcontax';
 import { MdDelete } from "react-icons/md";
 import Userorderpage from '../../user/Userorderpage';
 
-
 function Cartpage() {
   const [userauth, setUserauth] = useAuth();
   const [cart, setCart] = useCart();
@@ -61,7 +60,6 @@ function Cartpage() {
 
   return (
     <div >
-      {/* <div className='home-space'></div> */}
       <div>
         <div className='cart-header'>
           <h1>{`Hello ${userauth?.token && userauth?.user?.Fname}`}</h1>
@@ -91,7 +89,7 @@ function Cartpage() {
                 cart?.map(product => (
                   <tr key={product._id}>
                     <td>
-                      {product.category === 'Crystel' && (
+                      {product.category === 'Crystal' && (
                         <img src={`http://localhost:1202/uploads/Decor/Crystel/${product.productImage}`} alt={product.productName} />
                       )}
                       {product.category === 'Candlestand' && (

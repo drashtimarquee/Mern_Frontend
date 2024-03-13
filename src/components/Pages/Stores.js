@@ -3,7 +3,6 @@ import React from 'react'
 function Stores() {
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className='stores'>
                 <h1>Our Stores</h1>
                 <p>Located across Delhi NCR, our retail showrooms are treasure troves for unique finds. All our<br />

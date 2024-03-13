@@ -72,7 +72,7 @@ function Productlist() {
                                     <td>{product.productPrice}</td>
                                     <td>{product.productDescription}</td>
                                     <td>
-                                        {product.category === 'Crystel' && (
+                                        {product.category === 'Crystal' && (
                                             <img src={`http://localhost:1202/uploads/Decor/Crystel/${product.productImage}`} alt={product.productName} />
                                         )}
                                         {product.category === 'Candlestand' && (

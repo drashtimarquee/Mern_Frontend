@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
 import { useCart } from '../../components/Pages/Cartcontax';
 
+
 function Wishlist() {
 
   const [wishlist, setWishlist] = useWishlist();
@@ -40,7 +41,6 @@ function Wishlist() {
 
   return (
     <div >
-      {/* <div className='home-space'></div> */}
       <div>
         <div className='wishlist-header'>
           <CiHeart className='wishlist-icon' />
@@ -52,7 +52,7 @@ function Wishlist() {
           {
             wishlist?.map(item => (
               <div className='wishlist-img'>
-                {item.category === 'Crystel' && (
+                {item.category === 'Crystal' && (
                   <img src={`http://localhost:1202/uploads/Decor/Crystel/${item.productImage}`} alt={item.productName} />
                 )}
                 {item.category === 'Candlestand' && (

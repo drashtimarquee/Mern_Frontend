@@ -8,7 +8,6 @@ function Userorderbill({ location = {} }) {
   const [orders, setOrders] = useState([]);
   const { id } = useParams();
 
-
   const singleorder = async () => {
     const { data } = await axios.get(`http://localhost:1202/userorderdata/${id}`);
     console.log(data)

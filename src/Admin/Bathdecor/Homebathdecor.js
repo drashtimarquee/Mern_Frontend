@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom'
 function Homebathdecor() {
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className='decor'>
                 <img className='home-img' src='Assets/Bathdecor/Homebathdecor.webp' alt='furniture' />
             </div>
@@ -31,31 +30,31 @@ function Homebathdecor() {
                         <NavLink to='/Bathset'><img src="Assets/Bathdecor/Bathset/Bathset6.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
-                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin1.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
+                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin1.jpg" alt='basin' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
-                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin2.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
+                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin2.jpg" alt='basin' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
-                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin3.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
+                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin3.jpg" alt='basin' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
-                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin4.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
+                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin4.jpg" alt='basin' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
-                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin5.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
+                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin5.jpg" alt='basin' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
-                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin6.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
+                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin6.jpg" alt='basin' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
-                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin7.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
+                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin7.jpg" alt='basin' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
-                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin8.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
+                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin8.jpg" alt='basin' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
-                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin9.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>
+                        <NavLink to='/Basin'><img src="Assets/Bathdecor/Basin/Basin9.jpg" alt='basin' /><p>price :  ₹ 2100.00</p></NavLink>
                     </div>
                     <div className='candlestand-image-column' >
                         <NavLink to='/Bathset'><img src="Assets/Bathdecor/Bathset/Bathset7.jpg" alt='bathset' /><p>price :  ₹ 2100.00</p></NavLink>

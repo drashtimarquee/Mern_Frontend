@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 function Homepage() {
   return (
     <div className='homepage'>
-      {/* <div className='home-space'></div> */}
       <div className='home-horijontal '>
         <div className='home-list'>
           <NavLink className='decor-link' to="/Homenew"><img src="Assets/Lighting/badroom/Badlight6.jpg" className='homepage-img' alt='jar' />All new!</NavLink>
@@ -99,13 +98,12 @@ function Homepage() {
       <div>
         <div className='store-text'>
           <div className='store-list2'>
-            {/* <img src="Assets/Wall/Wallvases/Vas3.jpg" alt='' /> */}
-            <img src='Assets/Wall/Wallvases/Vas3.jpg' alt='stor' />
-            <img src='Assets/Wall/Wallplates/Wallplate8.jpg' alt='stor' />
-            <img src='Assets/Wall/Framedart/Frame2.jpg' alt='stor' />
-            <img src="Assets/Wall/Olipaint/Oil4.jpg" alt='stor' />
-            <img src='Assets/Wall/Wallmirror/Mirror6.jpg' alt='stor' />
-            <img src='Assets/Wall/Wallvases/Vas1.jpg' alt='stor' />
+            <NavLink to='/Wallvases' className='page-list2'><img src='Assets/Wall/Wallvases/Vas3.jpg' alt='stor' /></NavLink>
+            <NavLink to='/Wallplates' className='page-list2'><img src='Assets/Wall/Wallplates/Wallplate8.jpg' alt='stor' /></NavLink>
+            <NavLink to='/Framedart' className='page-list2'><img src='Assets/Wall/Framedart/Frame2.jpg' alt='stor' /></NavLink>
+            <NavLink to='/Olipaint' className='page-list2'><img src="Assets/Wall/Olipaint/Oil4.jpg" alt='stor' /></NavLink>
+            <NavLink to='/Wallmirror' className='page-list2'><img src='Assets/Wall/Wallmirror/Mirror6.jpg' alt='stor' /></NavLink>
+            <NavLink to='/Wallvases' className='page-list2'><img src='Assets/Wall/Wallvases/Vas1.jpg' alt='stor' /></NavLink>
           </div>
         </div>
       </div>

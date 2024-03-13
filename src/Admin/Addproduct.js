@@ -43,7 +43,7 @@ function Addproduct() {
                     <select className='option' value={category} onChange={(e) => setCategory(e.target.value)}>
                         <option>Select Category Of Decoration Item</option>
                         <option>Candlestand</option>
-                        <option>Crystel</option>
+                        <option>Crystal</option>
                         <option>Decorplates</option>
                         <option>Decorstorage</option>
                         <option>Fineporcelain</option>

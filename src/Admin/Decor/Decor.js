@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 function Decor() {
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className='home-horijontal '>
                 <div className='decor-list'>
                     <NavLink className='decor-link' to="/Gingerjar"><img src="Assets/Decor/Gingerjar/Gjar1.jpg" className='decor-img' alt='jar' />GINGER JARS</NavLink>

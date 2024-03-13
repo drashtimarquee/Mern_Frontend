@@ -3,7 +3,6 @@ import React from 'react'
 function Blocks() {
     return (
         <div className='blog'>
-            {/* <div className='home-space'></div> */}
             <h1>The BLOG</h1>
             <div className='blog-page'>
                 <div className='container'>

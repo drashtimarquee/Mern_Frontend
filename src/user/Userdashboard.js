@@ -6,8 +6,6 @@ function Userdashboard() {
 
   return (
     <div className='user-dashboard'>
-      {/* <div className='home-space'></div> */}
-      {/* <Usermenu /> */}
       <div className='user-dash-details'>
         <h1>User-Details</h1>
         <br />

@@ -18,7 +18,6 @@ function Admindashboard() {
   };
   return (
     <div>
-      {/* <div className='home-space2'></div> */}
       <div className='user-sider'>
         <Layout>
           <Sider>

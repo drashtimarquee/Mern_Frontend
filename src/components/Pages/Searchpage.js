@@ -15,13 +15,12 @@ function Searchpage() {
 
     return (
         <div className='text-container' >
-            <h1>Search Result</h1>
-            <h6>{values.result.length < 1 ? 'No Products Found' : `Found ${values?.result.length}`}</h6>
+            <h6>SEARCH FOR "{values.keyword}"</h6>
             <div className='search-result'>
                 {
                     values.result?.map((product) => (
                         <div key={product._id}>{product.name}
-                            {product.category === 'Crystel' && (
+                            {product.category === 'Crystal' && (
                                 <img src={`http://localhost:1202/uploads/Decor/Crystel/${product.productImage}`} alt={product.productName} />
                             )}
                             {product.category === 'Candlestand' && (
@@ -144,9 +143,10 @@ function Searchpage() {
                             {product.category === 'Basin' && (
                                 <img src={`http://localhost:1202/uploads/Bathdecor/Basin/${product.productImage}`} alt={product.productName} />
                             )}
-                            <p>Name :{product.productName}</p>
-                            <p>Price :{product.productPrice}</p>
-                            <p>Description :{product.productDescription}</p>
+                            <div className='product-des'>
+                                <div className='product-des1'>{product.productName}</div>
+                                <div className='product-des2'>Price : {product.productPrice}</div>
+                            </div>
                             <div className='product-detail-cart'>
                                 <p onClick={() => navigate(`/product/${product._id}`)}>More Details  </p>
                                 <p onClick={() => addtocart(product)}>Add To Cart</p>

@@ -3,16 +3,15 @@ import axios from 'axios';
 import Decor from './Decor';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useCart } from '../../components/Pages/Cartcontax';
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useWishlist } from '../../components/Pages/Wishlistcontaxt';
-
 
 function Decorplates() {
     const [product, setProduct] = useState([]);
     const navigate = useNavigate();
     const [cart, setcart] = useCart();
-    const [isHovered, setIsHovered] = useState(false);
     const [wishlist, setWishlist] = useWishlist();
+    const [hoveredProduct, setHoveredProduct] = useState(null);
 
     function addtowishlist(val) {
         setWishlist([...wishlist, val])
@@ -25,7 +24,7 @@ function Decorplates() {
         alert("item added to cart")
     }
 
-    async function allcrystel() {
+    async function alldecorplates() {
         try {
             const response = await axios.get("http://localhost:1202/product/Decorplates");
             if (response.status === 200) {
@@ -37,12 +36,11 @@ function Decorplates() {
     }
 
     useEffect(() => {
-        allcrystel();
+        alldecorplates();
     }, []);
 
     return (
         <div className='decor-page'>
-            {/* <div className='home-space'></div> */}
             <div className='decor'>
                 <img className='home-img' src='Assets/Decor/Backplates.webp' alt='dplate' />
             </div>
@@ -50,14 +48,18 @@ function Decorplates() {
             <h1>DECORATIVE PLATES</h1>
             <div className='decor-page-api '>
                 {
-                    product.map((val) => (
-                        <tr>
+                    product.map((val, index) => (
+                        <tr key={index}>
                             <td>
                                 {val.category === 'Decorplates' && (
                                     <div className="product-container">
                                         <img src={`http://localhost:1202/uploads/Decor/Decorplates/${val.productImage}`} alt={val.productName} />
-                                        <NavLink to='/Wishlist' onClick={() => addtowishlist(val)}>
-                                            <FaRegHeart className={`favourite-icon ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} />
+                                        <NavLink onClick={() => addtowishlist(val)}>
+                                            {hoveredProduct === index ? (
+                                                <FaHeart className="favourite-icon" />
+                                            ) : (
+                                                <FaRegHeart className="favourite-icon" onMouseEnter={() => setHoveredProduct(index)} onMouseLeave={() => setHoveredProduct(null)} />
+                                            )}
                                         </NavLink>
                                     </div>
                                 )}

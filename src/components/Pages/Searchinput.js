@@ -19,7 +19,6 @@ function Searchpage() {
     }
     return (
         <div className='search-page'>
-      {/* <div className='home-space'></div> */}
             <form className='search-form' role='search' onSubmit={handlesubmit}>
                 <div className='search-div'><IoSearch className='search-svg' />
                     <input className='search-form-input' type='search' placeholder='Search Item.....' value={values.keyword}

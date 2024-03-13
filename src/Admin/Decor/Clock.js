@@ -3,16 +3,16 @@ import axios from 'axios';
 import Decor from './Decor';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useCart } from '../../components/Pages/Cartcontax';
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useWishlist } from '../../components/Pages/Wishlistcontaxt';
 
 
-function Crystel() {
+function Clock() {
     const [product, setproduct] = useState([]);
     const navigate = useNavigate();
     const [cart, setcart] = useCart();
     const [wishlist, setWishlist] = useWishlist();
-    const [isHovered, setIsHovered] = useState(false);
+    const [hoveredProduct, setHoveredProduct] = useState(null);
 
     function addtowishlist(val) {
         setWishlist([...wishlist, val])
@@ -26,7 +26,7 @@ function Crystel() {
         alert("item added to cart")
     }
 
-    async function allcrystel() {
+    async function allclock() {
         try {
             const response = await axios.get("http://localhost:1202/product/Clock");
             if (response.status === 200) {
@@ -38,12 +38,11 @@ function Crystel() {
     }
 
     useEffect(() => {
-        allcrystel();
+        allclock();
     }, []);
 
     return (
         <div className='decor-page'>
-            {/* <div className='home-space'></div> */}
             <div className='decor'>
                 <img className='home-img' src='Assets/Decor/Backclock.webp' alt='clock' />
             </div>
@@ -51,14 +50,18 @@ function Crystel() {
             <h1>DECOR CLOCKS</h1>
             <div className='decor-page-api '>
                 {
-                    product.map((val) => (
-                        <tr>
+                    product.map((val, index) => (
+                        <tr key={index}>
                             <td>
                                 {val.category === 'Clock' && (
                                     <div className="product-container">
                                         <img src={`http://localhost:1202/uploads/Decor/Clock/${val.productImage}`} alt={val.productName} />
-                                        <NavLink to='/Wishlist' onClick={() => addtowishlist(val)}>
-                                            <FaRegHeart className={`favourite-icon ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} />
+                                        <NavLink onClick={() => addtowishlist(val)}>
+                                            {hoveredProduct === index ? (
+                                                <FaHeart className="favourite-icon" />
+                                            ) : (
+                                                <FaRegHeart className="favourite-icon" onMouseEnter={() => setHoveredProduct(index)} onMouseLeave={() => setHoveredProduct(null)} />
+                                            )}
                                         </NavLink>
                                     </div>
                                 )}
@@ -82,4 +85,4 @@ function Crystel() {
     );
 }
 
-export default Crystel;
+export default Clock;

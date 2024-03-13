@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useAuth } from './components/Pages/Usercontax';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Header from './components/Navbar/Header'
 import Admin from './Admin/Admin';
 import Login from './components/Pages/Login';
@@ -75,7 +74,6 @@ import Return from './components/Pages/Return';
 import Refund from './components/Pages/Refund';
 import Blocks from './components/Pages/Blocks';
 import Contact from './components/Pages/Contact';
-import View from './Admin/View';
 import Stores from './components/Pages/Stores';
 import Searchpages from './components/Pages/Searchpage';
 import Searchpage from './components/Pages/Searchinput';
@@ -92,15 +90,23 @@ import Basin from './Admin/Bathdecor/Basin';
 import Castiron from './Admin/Decor/Castiron';
 import Incenseholder from './Admin/Decor/Incenseholder';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
-  const [userauth, setUserauth] = useAuth();
 
   return (
     <div className="App">
       <div className='home-space'></div>
       <BrowserRouter>
-        {/* {userauth?.user?.Role === 1 ? null : <Header />}
-        {userauth?.user?.Role === 1 ? null : <Searchpage />} */}
+        <ScrollToTop />
         <Header />
         <Searchpage />
         <Routes>
@@ -109,7 +115,6 @@ function App() {
           <Route path='/admin' element={<Admin />} />
           <Route path='/Categ' element={<Categories />} />
           <Route path='/Decor' element={<Decor />} ></Route>
-          <Route path='/View' element={<View />} ></Route>
           <Route path='/Crystel' element={<Crystel />} />
           <Route path='/Candlestand' element={<Candlestand />} />
           <Route path='/Decorplates' element={<Decorplates />} />
@@ -194,7 +199,6 @@ function App() {
             <Route path='admin/Orderlist' element={<Orderlist />} />
           </Route>
         </Routes>
-        {/* {userauth?.user?.Role === 1 ? null : <Footer />} */}
         <Footer />
       </BrowserRouter>
 

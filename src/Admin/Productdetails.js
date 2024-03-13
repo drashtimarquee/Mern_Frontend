@@ -27,7 +27,7 @@ function Productdetails() {
     return (
         <div>
             <div className='product-details'>
-                {product.category === 'Crystel' && (
+                {product.category === 'Crystal' && (
                     <img src={`http://localhost:1202/uploads/Decor/Crystel/${product.productImage}`} alt={product.productName} />
                 )}
                 {product.category === 'Candlestand' && (

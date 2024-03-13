@@ -112,25 +112,8 @@ function Userorderpage() {
     }
   };
 
-  // const fetchSessionData = async (sessionId) => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:1202/payment/${sessionId}`);
-  //     if (response.data.success) {
-  //       const sessionData = response.data.sessionData;
-  //       console.log(sessionData);
-  //     } else {
-  //       console.error(response.data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching session data:', error);
-  //   }
-  // };
-
-  // fetchSessionData('sessionData');
-
   return (
     <div className='order-info'>
-      {/* <div className='home-space'></div> */}
       <form onSubmit={order}>
         <div className='user-order'>
           <h1>Customer's Details</h1>

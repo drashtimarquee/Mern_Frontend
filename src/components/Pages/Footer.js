@@ -1,8 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from "react-router-dom";
-
+import { IoCallOutline } from "react-icons/io5";
+import axios from 'axios';
 
 function Footer() {
+    const [email, setEmail] = useState('');
+
+    const sendEmail = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post('http://localhost:1202/subscribe', {
+                data: { email: email },
+            });
+            if (!res.ok) {
+                throw new Error(`Server returned status: ${res.status} - ${res.statusText}`);
+            } else {
+                setEmail('');
+            }
+            console.log('Subscription email sent successfully!');
+        } catch (error) {
+            console.error('Error sending subscription email:', error.message);
+        }
+    };
+
     return (
         <footer>
             <div className='footer-img'>
@@ -11,7 +31,8 @@ function Footer() {
                     <h4>WE WRITE REALLY GREATE EMAILS.</h4>
                     <p>No Spam. Only updates about new launches and sales.<br />dirtectly to your inbox.</p>
                     <form>
-                        <input type='text' placeholder='Your Emails' /><button>SUBSCRIPTION</button>
+                        <input type='text' placeholder='Your Email' onChange={(e) => setEmail(e.target.value)} />
+                        <button onClick={sendEmail}>SUBSCRIPTION</button>
                     </form>
                 </div>
             </div>
@@ -43,7 +64,7 @@ function Footer() {
                         <div>
                             <p>Get In Touch</p>
                             <div>
-                                <NavLink  className='footer-item-link3'><img src='Assets/whatsapp.png' alt='store-logo' /> 9999999999/9999999999 </NavLink>
+                                <NavLink className='footer-item-link3'><IoCallOutline className='fotter-call' />  9985476210/8596385412 </NavLink>
                                 <NavLink className='footer-item-link3'><img src='Assets/Email.png' alt='store-logo' />info@abc.com </NavLink>
                                 <NavLink to='/Stores' className='footer-item-link3'><img src='Assets/Storelogo.png' alt='store-logo' />Our Stores </NavLink>
                             </div>

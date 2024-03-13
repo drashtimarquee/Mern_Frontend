@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 function Contact() {
     return (
         <div>
-            {/* <div className='home-space'></div> */}
             <div className='contact'>
                 <h1>Contact us</h1>
                 <div className='contact-page'>

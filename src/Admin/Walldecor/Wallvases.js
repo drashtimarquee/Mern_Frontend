@@ -3,7 +3,7 @@ import axios from 'axios';
 import Walldecor from './Walldecor';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useCart } from '../../components/Pages/Cartcontax';
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useWishlist } from '../../components/Pages/Wishlistcontaxt';
 
 function Wallvases() {
@@ -11,7 +11,7 @@ function Wallvases() {
     const navigate = useNavigate();
     const [cart, setcart] = useCart();
     const [wishlist, setWishlist] = useWishlist();
-    const [isHovered, setIsHovered] = useState(false);
+    const [hoveredProduct, setHoveredProduct] = useState(null);
 
     function addtowishlist(val) {
         setWishlist([...wishlist, val])
@@ -41,22 +41,25 @@ function Wallvases() {
 
     return (
         <div className='decor-page'>
-            {/* <div className='home-space'></div> */}
             <div className='decor'>
-                <img className='home-img' src='Assets/Wall/Backvases.webp' alt='' />
+                <img className='home-img' src='Assets/Wall/Backvases.webp' alt='wallvas' />
             </div>
             <Walldecor />
             <h1>WALL VASES</h1>
             <div className='decor-page-api '>
                 {
-                    product.map((val) => (
-                        <tr>
+                    product.map((val, index) => (
+                        <tr key={index}>
                             <td>
                                 {val.category === 'Wallvases' && (
                                     <div className="product-container">
                                         <img src={`http://localhost:1202/uploads/Walldecor/Wallvases/${val.productImage}`} alt={val.productName} />
-                                        <NavLink to='/Wishlist' onClick={() => addtowishlist(val)}>
-                                            <FaRegHeart className={`favourite-icon ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} />
+                                        <NavLink onClick={() => addtowishlist(val)}>
+                                            {hoveredProduct === index ? (
+                                                <FaHeart className="favourite-icon" />
+                                            ) : (
+                                                <FaRegHeart className="favourite-icon" onMouseEnter={() => setHoveredProduct(index)} onMouseLeave={() => setHoveredProduct(null)} />
+                                            )}
                                         </NavLink>
                                     </div>
                                 )}

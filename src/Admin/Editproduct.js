@@ -45,13 +45,12 @@ function Editproduct() {
         if (response.status === 200) {
             navigate("/Dashboard/admin/Productlist")
         } else {
-            alert("product add failed");
+            alert("product edit failed");
         }
     };
 
     return (
         <div className='add-product'>
-            {/* <div className='home-space2'></div> */}
             <form onSubmit={editproduct}>
                 <div className='add-product-desc'>
                     <input type='text' id='productName' value={productName} placeholder='enter product name' onChange={(e) => setName(e.target.value)} /><br />
@@ -60,7 +59,7 @@ function Editproduct() {
                     <select className='option' value={category} onChange={(e) => setCategory(e.target.value)} >
                         <option>Select Category Of Decoration Item</option>
                         <option>Candlestand</option>
-                        <option>Crystel</option>
+                        <option>Crystal</option>
                         <option>Decorplates</option>
                         <option>Decorstorage</option>
                         <option>Fineporcelain</option>

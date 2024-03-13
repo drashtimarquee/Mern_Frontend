@@ -3,7 +3,6 @@ import React from 'react'
 function Condition() {
     return (
         <div className='condition-page'>
-            {/* <div className='home-space'></div> */}
             <h1>Terms & Conditions</h1>
             <h4>
                 TERMS & CONDITIONS

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../components/Pages/Usercontax';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Edituser() {
   const [userauth, setUserauth] = useAuth();
@@ -8,6 +9,7 @@ function Edituser() {
   const [Lname, setLname] = useState('');
   const [Email, setEmail] = useState('');
   const [Address, setAddress] = useState('');
+  const navigate = useNavigate();
 
   const updateuser = async (e) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ function Edituser() {
       ls.user = data.updateuser;
       localStorage.setItem('auth', JSON.stringify(ls))
       console.log("Profile Updated Successfully",)
+      navigate('/Dashboard/user')
     }
   }
 
@@ -35,17 +38,16 @@ function Edituser() {
   }, [userauth?.user])
 
   return (
-    <div className="form">
-      {/* <div className='home-space'></div> */}
-      <div className="formbody">
-        <div className="register">
+    <div className='form'>
+      <div className='formbody'>
+        <div className='register'>
           <form onSubmit={updateuser}>
-            <input className="forminput" type="text" value={Fname} onChange={(e) => setFname(e.target.value)} /><br />
-            <input className="forminput" type="text" value={Lname} onChange={(e) => setLname(e.target.value)} /><br />
-            <input className="forminput" type="email" value={Email} onChange={(e) => setEmail(e.target.value)} /><br />
-            <input className="forminput" type="text" value={Address} onChange={(e) => setAddress(e.target.value)} /><br />
+            <input type='text' className='forminput' value={Fname} onChange={(e) => setFname(e.target.value)} /><br />
+            <input type='text' className='forminput' value={Lname} onChange={(e) => setLname(e.target.value)} /><br />
+            <input type='email' className='forminput' value={Email} onChange={(e) => setEmail(e.target.value)} /><br />
+            <input type='text' className='forminput' value={Address} onChange={(e) => setAddress(e.target.value)} /><br />
             <br />
-            <button className="footer">UPDATE</button>
+            <button className='footer'>UPDATE</button>
           </form>
         </div>
       </div>
