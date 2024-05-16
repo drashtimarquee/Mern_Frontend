@@ -1,10 +1,29 @@
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import SimpleImageSlider from "react-simple-image-slider";
 
 function Decor() {
+    const [imageNum, setImageNum] = useState(1);
+
     return (
         <div>
             <div className='home-horijontal '>
                 <div className='decor-list'>
+                <SimpleImageSlider
+                width={896}
+                height={504}
+                images={[
+                    { url:<NavLink className='decor-link' to="/Gingerjar"><img src="Assets/Decor/Gingerjar/Gjar1.jpg" className='decor-img' alt='jar' />GINGER JARS</NavLink>},
+                    { url:<NavLink className='decor-link' to="/Gingerjar"><img src="Assets/Decor/Gingerjar/Gjar1.jpg" className='decor-img' alt='jar' />GINGER JARS</NavLink>},
+                    { url:<NavLink className='decor-link' to="/Gingerjar"><img src="Assets/Decor/Gingerjar/Gjar1.jpg" className='decor-img' alt='jar' />GINGER JARS</NavLink>},
+  { url: "images/4.jpg" },
+  { url: "images/5.jpg" },
+  { url: "images/6.jpg" },
+  { url: "images/7.jpg" },
+                ]}
+                showBullets={true}
+                showNavs={true}
+            />
                     <NavLink className='decor-link' to="/Gingerjar"><img src="Assets/Decor/Gingerjar/Gjar1.jpg" className='decor-img' alt='jar' />GINGER JARS</NavLink>
                     <NavLink className='decor-link' to="/Fineporcelain"><img src="Assets/Decor/Fineporcelain/Finep1.jpg" className='decor-img' alt='fine' />HUMAN<br /> FIGURINES</NavLink>
                     <NavLink className='decor-link' to="/Candlestand"><img src="Assets/Decor/Candlestand/Candle1.jpg" className='decor-img' alt='candle' />CANDLE <br />STANDS</NavLink>

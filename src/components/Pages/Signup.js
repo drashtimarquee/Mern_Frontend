@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 const Register = () => {
 
@@ -84,34 +85,50 @@ const Register = () => {
     }
 
     return (
-        <div>
-            <div className="form">
-                <h1>REGISTRATION  FORM</h1>
-                <div className="formbody">
-                    <div className="register">
-                        <form onSubmit={register}>
-                            <input id="Fname" className="forminput" type="text" placeholder="enter your fname"
-                                onChange={(e) => setFname(e.target.value)} /><br />
-                            {fnameError && <span style={{ color: "red", marginLeft: "47px" }}>{fnameError}</span>}
-                            <input id="Lname" className="forminput" type="text" placeholder="enter your lname"
-                                onChange={(e) => setLname(e.target.value)} /><br />
-                            {lnameError && <span style={{ color: "red", marginLeft: "47px" }}>{lnameError}</span>}
-                            <input id="email" className="forminput" type="email" placeholder="enter your email"
-                                onChange={(e) => setEmail(e.target.value)} /><br />
+        <div className="container-form">
+            <img className="form-img" src='Assets/signup_background2.jpg' alt="" />
+            <div className="form-body">
+                <div className="form-body-a">
+                    <h1>Welcome to the Signup Page for The Decor Kart</h1>
+                    <h6>Already have an account ? <NavLink to="/Login">Signin</NavLink> </h6>
+                </div>
+                <div className="form-body-b">
+                    <form onSubmit={register}>
+                        <h2 className="form-header">Sign Up</h2>
+                        <div className="user-info">
+                            <div className='user-input'>
+                                <label className="form-lable">First name </label>
+                                <input id="Fname" className="form-input" type="text" placeholder=" First Name" onChange={(e) => setFname(e.target.value)} />
+                                {fnameError && <span style={{ color: "red", marginLeft: "47px" }}>{fnameError}</span>}
+                            </div>
+                            <div className='user-input'>
+                                <label className="form-lable">Last name </label>
+                                <input id="Lname" className="form-input" type="text" placeholder=" Last Name" onChange={(e) => setLname(e.target.value)} />
+                                {lnameError && <span style={{ color: "red", marginLeft: "47px" }}>{lnameError}</span>}
+                            </div>
+                        </div>
+                        <div className="user-input">
+                            <label className="form-lable">Email </label>
+                            <input id="email" className="form-input" type="email" placeholder=" Email" onChange={(e) => setEmail(e.target.value)} />
                             {emailError && <span style={{ color: "red", marginLeft: "47px" }}>{emailError}</span>}
-                            <input id="address" className="forminput" type="text" placeholder="enter your address"
-                                onChange={(e) => setAddress(e.target.value)} /><br />
+                        </div>
+                        <div className="user-input">
+                            <label className="form-lable">Address </label>
+                            <input id="address" className="form-input" type="text" placeholder=" Address" onChange={(e) => setAddress(e.target.value)} />
                             {addressError && <span style={{ color: "red", marginLeft: "47px" }}>{addressError}</span>}
-                            <input id="Password" className="forminput" type="password" placeholder="enter your password"
-                                onChange={(e) => setpassword(e.target.value)} /><br />
+                        </div>
+                        <div className="user-input">
+                            <label className="form-lable">Password </label>
+                            <input id="Password" className="form-input" type="password" placeholder=" Password" onChange={(e) => setpassword(e.target.value)} />
                             {passwordError && <span style={{ color: "red", marginLeft: "47px" }}>{passwordError}</span>}
-                            <input id="Cpassword" className="forminput" type="password" placeholder="enter your  confirm password"
-                                onChange={(e) => setCpassword(e.target.value)} /><br />
+                        </div>
+                        <div className="user-input">
+                            <label className="form-lable">Confirm Password </label>
+                            <input id="Cpassword" className="form-input" type="password" placeholder=" Confirm Password" onChange={(e) => setCpassword(e.target.value)} />
                             {cpasswordError && <span style={{ color: "red", marginLeft: "47px" }}>{cpasswordError}</span>}
-                            <br />
-                            <button className="footer">Signup</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button className="footer">Signup</button>
+                    </form>
                 </div>
             </div>
         </div>

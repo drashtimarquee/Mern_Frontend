@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
+import { Table } from 'antd';
 
 function Orderlist() {
     const [orders, setOrders] = useState([]);
@@ -26,63 +27,97 @@ function Orderlist() {
         fetchOrders();
     }, []);
 
+    const handleStatusChange = async (orderId, newStatus) => {
+        try {
+            // Update the status in the state
+            const updatedOrders = orders.map(order => {
+                if (order._id === orderId) {
+                    return { ...order, status: newStatus };
+                }
+                return order;
+            });
+            setOrders(updatedOrders);
+            await axios.put(`http://localhost:1202/updateOrderStatus/${orderId}`, { status: newStatus });
+        } catch (error) {
+            console.error("Error updating order status:", error);
+        }
+    };
+
+    const Columns = [
+        {
+            title: "Order ID",
+            dataIndex: "_id"
+        },
+        {
+            title: "User ID",
+            dataIndex: "userId"
+        },
+        {
+            title: "Date",
+            dataIndex: "createdAt",
+            render: (date) => new Date(date).toLocaleString()
+        },
+        {
+            title: "Phn Number",
+            dataIndex: ["shippingAddress", "phoneNumber"]
+        },
+        {
+            title: "Address",
+            dataIndex: ["shippingAddress", "address"]
+        },
+        {
+            title: "City",
+            dataIndex: ["shippingAddress", "city"]
+        },
+        {
+            title: "State",
+            dataIndex: ["shippingAddress", "state"]
+        },
+        {
+            title: "Zipcode",
+            dataIndex: ["shippingAddress", "zipcode"]
+        },
+        {
+            title: "Product Name",
+            dataIndex: "cart",
+            render: cart => cart.map(product => product.productName).join(", ")
+        },
+        {
+            title: "Price",
+            dataIndex: "cart",
+            render: cart => cart.map(product => product.productPrice).join(", ")
+        },
+        {
+            title: "Category",
+            dataIndex: "cart",
+            render: cart => cart.map(product => product.category).join(", ")
+        },
+        {
+            title: "Qnty",
+            dataIndex: "cart",
+            render: cart => (cart.map(product => (<div>{product.count}</div>))
+            )
+        },
+        {
+            title: "Delivery status",
+            dataIndex: "status",
+            render: (status, record) => (
+                <select defaultValue={status} onChange={e => handleStatusChange(record._id, e.target.value)}>
+                    <option value="pending">Pending</option>
+                    <option value="success">Success</option>
+                </select>
+            )
+        }
+    ];
+
     return (
         <div>
-            <div className='userlist'>
+            <div >
                 <NavLink to="/Dashboard/admin" className="icon-link"><ArrowLeftOutlined className='user-icon' /></NavLink>
-                <h1>ALL ORDER LIST</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>User ID</th>
-                            <th>Date</th>
-                            <th>User Name</th>
-                            <th>Email</th>
-                            <th>Phn Number</th>
-                            <th>Address</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Zipcode</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                            <th>Quantity</th>
-                            <th>Payment status</th>
-                        </tr>
-                    </thead>
-                    <tbody className="userlist-tbody">
-                        {orders && orders.length > 0 ? (
-                            orders.map((order) => (
-                                <tr key={order._id}>
-                                    <td>{order._id}</td>
-                                    <td>{order.userId}</td>
-                                    <td>{new Date(order.createdAt).toLocaleString()}</td>
-                                    <td>{`${order.shippingAddress.firstName} ${order.shippingAddress.lastName}`}</td>
-                                    <td>{order.shippingAddress.email}</td>
-                                    <td>{order.shippingAddress.phoneNumber}</td>
-                                    <td>{order.shippingAddress.address}</td>
-                                    <td>{order.shippingAddress.city}</td>
-                                    <td>{order.shippingAddress.state}</td>
-                                    <td>{order.shippingAddress.zipcode}</td>
-                                    {order.cart.map((product, index) => (
-                                        <React.Fragment key={index}>
-                                            <td>{product.productName}</td>
-                                            <td>{product.productPrice}</td>
-                                            <td>{product.category}</td>
-                                            <td>{product.count}</td>
-                                        </React.Fragment>
-                                    ))}
-                                    <td>{order.status.success ? "success" : "pending"}</td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="15">No orders available</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                <h1 className='userlist'>ALL ORDER LIST</h1>
+                <div className='mt-4'>
+                    <Table columns={Columns} dataSource={orders} />
+                </div>
             </div>
         </div>
     );

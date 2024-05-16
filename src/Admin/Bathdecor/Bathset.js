@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Bathdecor from './Bathdecor';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, json, useNavigate } from 'react-router-dom';
 import { useCart } from '../../components/Pages/Cartcontax';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useWishlist } from '../../components/Pages/Wishlistcontaxt';
@@ -13,15 +13,14 @@ function Bathset() {
     const [wishlist, setWishlist] = useWishlist();
     const [hoveredProduct, setHoveredProduct] = useState(null);
 
-    function addtowishlist(val) {
-        setWishlist([...wishlist, val])
-        localStorage.setItem("wishlist", JSON.stringify([...wishlist, val]))
-        alert('Item Added To wishlist')
-    }
     function addtocart(val) {
         setcart([...cart, val])
         localStorage.setItem("cart", JSON.stringify([...cart, val]))
-        alert("item added to cart")
+    }
+
+    function addtowishlist(val) {
+        setWishlist([...wishlist, val])
+        localStorage.setItem("wishlist", JSON.stringify([...wishlist, val]))
     }
 
     async function allbathset() {
@@ -46,14 +45,24 @@ function Bathset() {
             </div>
             <Bathdecor />
             <h1>BATH SET</h1>
-            <div className='decor-page-api '>
+            <div className='wishlist-tbody'>
                 {
                     product.map((val, index) => (
-                        <tr key={index}>
+                        <tr className='page-img' key={index}>
                             <td>
-                                {val.category === 'Bathset' && (
-                                    <div className="product-container">
-                                        <img src={`http://localhost:1202/uploads/Bathdecor/Bathset/${val.productImage}`} alt={val.productName} />
+                                <div>
+                                    {val.category === 'Bathset' && (
+                                        <div onClick={() => navigate(`/product/${val._id}`)} className='page-imd-details'>
+                                            <img src={`http://localhost:1202/uploads/Bathdecor/Bathset/${val.productImage}`} alt={val.productName} />
+                                        </div>
+                                    )}
+                                    {val.category === 'Bathset' && (
+                                        <div className='product-desc'>
+                                            <div className='product-desc1'>{val.productName}</div>
+                                            <div className='product-desc2'>${val.productPrice}</div>
+                                        </div>
+                                    )}
+                                    <div className='product-detail-cart'>
                                         <NavLink onClick={() => addtowishlist(val)}>
                                             {hoveredProduct === index ? (
                                                 <FaHeart className="favourite-icon" />
@@ -61,17 +70,8 @@ function Bathset() {
                                                 <FaRegHeart className="favourite-icon" onMouseEnter={() => setHoveredProduct(index)} onMouseLeave={() => setHoveredProduct(null)} />
                                             )}
                                         </NavLink>
+                                        <button className='page-btn' onClick={() => addtocart(val)}>Add To Cart</button>
                                     </div>
-                                )}
-                                {val.category === 'Bathset' && (
-                                    <div className='product-des'>
-                                        <div className='product-des1'>{val.productName}</div>
-                                        <div className='product-des2'>Price : {val.productPrice}</div>
-                                    </div>
-                                )}
-                                <div className='product-detail-cart'>
-                                    <p onClick={() => navigate(`/product/${val._id}`)}>More Details  </p>
-                                    <p onClick={() => addtocart(val)}>Add To Cart</p>
                                 </div>
                             </td>
                         </tr>

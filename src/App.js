@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { useAuth } from './components/Pages/Usercontax';
 import Header from './components/Navbar/Header'
 import Admin from './Admin/Admin';
 import Login from './components/Pages/Login';
@@ -101,14 +102,15 @@ function ScrollToTop() {
 }
 
 function App() {
-
+  const [userauth, setUserauth] = useAuth();
   return (
     <div className="App">
-      <div className='home-space'></div>
+
       <BrowserRouter>
+        {userauth?.user?.Role === 1 ? null : <div className='home-space'></div>}
+        {userauth?.user?.Role === 1 ? null : <Header />}
+        {userauth?.user?.Role === 1 ? null : <Searchpage />}
         <ScrollToTop />
-        <Header />
-        <Searchpage />
         <Routes>
           <Route path='/Login' element={<Login />} />
           <Route path='/Signup' element={<Signup />} />
@@ -199,9 +201,8 @@ function App() {
             <Route path='admin/Orderlist' element={<Orderlist />} />
           </Route>
         </Routes>
-        <Footer />
+        {userauth?.user?.Role === 1 ? null : <Footer />}
       </BrowserRouter>
-
     </div>
   );
 }

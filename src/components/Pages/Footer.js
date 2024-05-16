@@ -25,17 +25,6 @@ function Footer() {
 
     return (
         <footer>
-            <div className='footer-img'>
-                <img src='Assets/Home5.jpg' alt='' />
-                <div className='footer-form'>
-                    <h4>WE WRITE REALLY GREATE EMAILS.</h4>
-                    <p>No Spam. Only updates about new launches and sales.<br />dirtectly to your inbox.</p>
-                    <form>
-                        <input type='text' placeholder='Your Email' onChange={(e) => setEmail(e.target.value)} />
-                        <button onClick={sendEmail}>SUBSCRIPTION</button>
-                    </form>
-                </div>
-            </div>
             <div className='footer-page'>
                 <div>
                     <div className='footer__item-list'>
@@ -64,8 +53,8 @@ function Footer() {
                         <div>
                             <p>Get In Touch</p>
                             <div>
-                                <NavLink className='footer-item-link3'><IoCallOutline className='fotter-call' />  9985476210/8596385412 </NavLink>
-                                <NavLink className='footer-item-link3'><img src='Assets/Email.png' alt='store-logo' />info@abc.com </NavLink>
+                                <NavLink className='footer-item-link3'><IoCallOutline className='fotter-call' />  9985476210 / 8596385412 </NavLink>
+                                <NavLink className='footer-item-link3'><img src='Assets/Email.png' alt='store-logo' />info@thedecorcart.com </NavLink>
                                 <NavLink to='/Stores' className='footer-item-link3'><img src='Assets/Storelogo.png' alt='store-logo' />Our Stores </NavLink>
                             </div>
                         </div>

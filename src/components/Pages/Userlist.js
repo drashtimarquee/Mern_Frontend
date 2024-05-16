@@ -1,54 +1,66 @@
-import React from 'react'
-import { useEffect, useState } from "react"
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
+import { Table } from 'antd';
 
 function Userlist() {
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  const alluser = async () => {
-    const response = await axios.get("http://localhost:1202/alluser");
-    if (response.status === 200) {
-      setUser(response.data.user);
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get("http://localhost:1202/alluser");
+      if (response.status === 200) {
+        setUsers(response.data.user);
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
     }
-  }
+  };
+
   useEffect(() => {
-    alluser();
-  })
+    fetchUsers();
+  }, []);
+
+  const columns = [
+    {
+      title: "Sno.",
+      dataIndex: "index",
+    },
+    {
+      title: "First Name",
+      dataIndex: "Fname",
+    },
+    {
+      title: "Last Name",
+      dataIndex: "Lname",
+    },
+    {
+      title: "Email",
+      dataIndex: "Email",
+    },
+    {
+      title: "Address",
+      dataIndex: "Address",
+    },
+  ];
+
+  const data = users.map((user, index) => ({
+    ...user,
+    index: index + 1,
+  }));
 
   return (
-    <div className='userlist'>
-      <NavLink to="/Dashboard/admin" className="icon-link"><ArrowLeftOutlined className='user-icon' /></NavLink>
-      <h1>ALL USER LIST</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Sno.</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Password</th>
-          </tr>
-        </thead>
-        <tbody className="userlist-tbody">
-          {
-            user.map((val, index) => (
-              <tr>
-                <td>{index + 1}</td>
-                <td>{val.Fname}</td>
-                <td>{val.Lname}</td>
-                <td>{val.Email}</td>
-                <td>{val.Address}</td>
-                <td>{val.Password}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+    <div >
+      <NavLink to="/Dashboard/admin" className="icon-link">
+        <ArrowLeftOutlined className='user-icon' />
+      </NavLink>
+      <div className="mt-4">
+        <h2 className="mb-4 text-center pb-3">USER LIST</h2>
+        <Table columns={columns} dataSource={data} />
+      </div>
     </div>
-  )
+  );
 }
 
 export default Userlist;

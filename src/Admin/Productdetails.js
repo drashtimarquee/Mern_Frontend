@@ -3,16 +3,23 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../components/Pages/Cartcontax';
+import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
+
 
 function Productdetails() {
     const [product, setProduct] = useState({});
     const { id } = useParams();
     const [cart, setCart] = useCart();
+    const [quantity, setQuantity] = useState(1);
+    const [comment, setComment] = useState("");
+    const [rating, setRating] = useState(0);
+    const [starCount, setStarCount] = useState(0);
 
-    function addtocart(val) {
-        setCart([...cart, val])
-        localStorage.setItem("cart", JSON.stringify([...cart, val]))
-        alert("Item Added To Cart");
+    function addtocart(product, quantity) {
+        const itemToAdd = { ...product, quantity };
+        setCart([...cart, itemToAdd]);
+        localStorage.setItem("cart", JSON.stringify([...cart, itemToAdd]));
     }
 
     const singleproduct = async () => {
@@ -21,12 +28,48 @@ function Productdetails() {
         setProduct(data.product)
     }
 
+    const incrementQuantity = () => {
+        setQuantity(quantity + 1);
+    }
+
+    const decrementQuantity = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+    }
+
+    const submitReview = async () => {
+        try {
+            const reviewData = {
+                productId: id,
+                rating,
+                comment,
+                starCount
+            };
+            const response = await axios.post('http://localhost:1202/review', reviewData);
+            console.log('Review submitted:', response.data);
+            setComment('');
+        } catch (error) {
+            console.error('Error submitting review:', error);
+        }
+    }
+
     useEffect(() => {
         singleproduct();
     }, [])
+
+    useEffect(() => {
+        const existingProduct = cart.find(item => item._id === id);
+        if (existingProduct) {
+            setQuantity(existingProduct.quantity);
+        }
+    }, [cart, id]);
+
+    const totalPrice = product.productPrice * quantity;
+
     return (
-        <div>
-            <div className='product-details'>
+        <div className='product-details'>
+            <div className='product-details-img'>
                 {product.category === 'Crystal' && (
                     <img src={`http://localhost:1202/uploads/Decor/Crystel/${product.productImage}`} alt={product.productName} />
                 )}
@@ -150,12 +193,51 @@ function Productdetails() {
                 {product.category === 'Basin' && (
                     <img src={`http://localhost:1202/uploads/Bathdecor/Basin/${product.productImage}`} alt={product.productName} />
                 )}
-                <div className='product-all-details'>
-                    <h2><span> Name :  </span>{product.productName}</h2>
-                    <h2><span> Price :  </span>{product.productPrice}</h2>
-                    <h2><span> Description :  </span>{product.productDescription}</h2>
-                    <h2><span> Category :  </span>{product.category}</h2>
-                    <button onClick={() => addtocart(product)}>Add To Cart</button>
+            </div>
+            <div className='product-all-details'>
+                <h2>{product.productName}</h2>
+                <div className='pro-details-label'>
+                    <div className='product-price'>
+                        <label>PRICE</label>
+                        <h3>${product.productPrice}.00</h3>
+                    </div>
+                    <div>
+                        <label>QUANTITY</label>
+                        <div className='prod-details-qty'>
+                            <div className='product-desc1' onClick={incrementQuantity}>+</div>
+                            <span>{quantity}</span>
+                            <div className='product-desc2' onClick={decrementQuantity}>-</div>
+                        </div>
+                    </div>
+                </div>
+                <div className='pro-details-label'>
+                    <div>
+                        <label>DESCRIPTION</label>
+                        <h4>{product.productDescription}</h4><br /><br />
+                        <h4>100% Original Products.</h4>
+                        <h4>Pay on delivery might be available.</h4>
+                        <h4>Easy 14 days returns and exchanges.</h4>
+                    </div>
+                </div>
+                <div className='pro-details-label'>
+                    <div>
+                        <label>CATEGORY</label>
+                        <h4>{product.category}</h4>
+                    </div>
+                </div>
+                <div className='pro-details-label'>
+                    <div className='total-price'>
+                        <label>TOTAL PRICE</label>
+                        <h3>${totalPrice.toFixed(2)}</h3>
+                    </div>
+                </div>
+                <button className='product-btn' onClick={() => addtocart(product, quantity)}>Add To Cart</button>
+                <div className='pro-details-label'>
+                    <div>
+                        <label>COMMENT</label><br />
+                        <textarea className='product-details-input' value={comment} onChange={(e) => setComment(e.target.value)} /><br />
+                        <button onClick={submitReview}>SUBMIT</button>
+                    </div>
                 </div>
             </div>
         </div>

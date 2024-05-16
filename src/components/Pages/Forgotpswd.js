@@ -23,15 +23,17 @@ const Forgotpswd = () => {
 
     return (
         <div>
+            <img className="form-img" src='/Assets/edit_background.jpg' alt="" />
             <div className="form">
-                <div className="formbody">
-                    <form onSubmit={passwordreset}>
-                        <input className="forminput" type="email" placeholder="enter your email" value={Email} onChange={(e) => setEmail(e.target.value)} />
-                        <input className="forminput" type="password" placeholder="enter your new password" onChange={(e) => setnewpassword(e.target.value)} />
-                        <button className="footer">Update Password</button>
-                        <br />
-                    </form>
-                </div>
+                <form onSubmit={passwordreset}>
+                    <div className="user-input">
+                        <input type="email" placeholder="enter your email" value={Email} onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <div className="user-input">
+                        <input type="password" placeholder="enter your new password" onChange={(e) => setnewpassword(e.target.value)} />
+                    </div>
+                    <button className="footer">Update</button>
+                </form>
             </div>
         </div>
     );

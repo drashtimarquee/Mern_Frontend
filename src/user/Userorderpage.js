@@ -24,6 +24,8 @@ function Userorderpage() {
   const [addresserr, setAdderr] = useState('');
   const [codeerr, setCodeerr] = useState('');
   const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+  const phnregex = /^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/;
+  const zipregex = /[0-9]{6}$/;
 
   const validateForm = () => {
     setFnameerr('');
@@ -37,38 +39,44 @@ function Userorderpage() {
 
     let isValid = true;
     if (!Fname) {
-      setFnameerr('Please Enter Your First Name');
+      setFnameerr('Enter Your First Name');
       isValid = false;
     }
     if (!Lname) {
-      setLnameerr('Please Enter Phone Last Name');
+      setLnameerr('Enter Phone Last Name');
       isValid = false;
     }
     if (!Email) {
-      setEmailerr('Please Enter Your Email');
+      setEmailerr('Enter Your Email');
       isValid = false;
     } else if (!emailRegex.test(Email)) {
-      setEmailerr('Please Enter Valid Email');
+      setEmailerr('Enter Valid Email');
       isValid = false;
     }
     if (!Phnno) {
-      setPhnerr('Please Enter Phone number');
+      setPhnerr('Enter Your Phone no.');
+      isValid = false;
+    } else if (!phnregex.test(Phnno)) {
+      setPhnerr('Enter Valid Phone Number');
       isValid = false;
     }
     if (!Address) {
-      setAdderr('Please Enter Your Address');
+      setAdderr('Enter Your Address');
       isValid = false;
     }
     if (!City) {
-      setCityerr('Please Enter Your City');
+      setCityerr('Enter Your City');
       isValid = false;
     }
     if (!State) {
-      setStateerr('Please Enter Your State');
+      setStateerr('Enter Your State');
       isValid = false;
     }
     if (!Zipcode) {
-      setCodeerr('Please Enter Your Postal Code');
+      setCodeerr('Enter Area Zip Code');
+      isValid = false;
+    } else if (!zipregex.test(Zipcode)) {
+      setCodeerr('Enter Valid Zip Code');
       isValid = false;
     }
     return isValid;
@@ -85,7 +93,7 @@ function Userorderpage() {
         if (response && response.data && response.data.url) {
           console.log(response.data);
           if (response.data.url) {
-            window.location.href = response.data.url;
+            makepayment(response.data.sessionId);
           }
         } else {
           console.error('Invalid response format:', response);
@@ -102,11 +110,9 @@ function Userorderpage() {
       const { error } = await stripe.redirectToCheckout({
         sessionId: sessionId,
       });
-
       if (error) {
         console.log('Error Details:', error.message);
       }
-
     } catch (error) {
       console.error('Unexpected error:', error);
     }
@@ -116,63 +122,61 @@ function Userorderpage() {
     <div className='order-info'>
       <form onSubmit={order}>
         <div className='user-order'>
-          <h1>Customer's Details</h1>
+          <h1>Billing address</h1>
         </div>
-        <h6>Sipping Address</h6>
         <div className='user-info'>
           <div className='user-input'>
+            <label>First name</label>
             <input type='text' id='fname' onChange={(e) => setFname(e.target.value)} /><br />
-            <label>First Name</label>
             {fnameerr && <span style={{ color: "red", marginLeft: "47px" }}>{fnameerr}</span>}
           </div>
           <div className='user-input'>
+            <label>Last name</label>
             <input type='text' id='lname' onChange={(e) => setLname(e.target.value)} /><br />
-            <label>Last Name</label>
             {lnameerr && <span style={{ color: "red", marginLeft: "47px" }}>{lnameerr}</span>}
           </div>
         </div>
         <div>
           <div className='user-info'>
             <div className='user-input'>
-              <h6>Phone Number</h6>
+              <label>Email address</label>
+              <input type='text' id='email' onChange={(e) => setEmail(e.target.value)} /><br />
+              {emailerr && <span style={{ color: "red", marginLeft: "47px" }}>{emailerr}</span>}
+            </div>
+            <div className='user-input'>
+              <label>Phone number</label>
               <input type='text' id='phn' onChange={(e) => setPhn(e.target.value)} /><br />
               {phnerr && <span style={{ color: "red", marginLeft: "47px" }}>{phnerr}</span>}
             </div>
-            <div className='user-input'>
-              <h6>Email</h6>
-              <input type='text' id='email' onChange={(e) => setEmail(e.target.value)} /><br />
-              <label>example@example.com</label>
-              {emailerr && <span style={{ color: "red", marginLeft: "47px" }}>{emailerr}</span>}
-            </div>
           </div>
         </div>
-        <div className='order-add'>
-          <h6>Sipping Address</h6>
-          <div className='user-input'>
-            <input type='text' id='add' onChange={(e) => setAddress(e.target.value)} />
-            <label>Street Address</label>
-            {addresserr && <span style={{ color: "red", marginLeft: "47px" }}>{addresserr}</span>}
-          </div>
+        <div className='user-input'>
+          <label>Shipping address</label>
+          <input type='text' id='add' onChange={(e) => setAddress(e.target.value)} />
+          {addresserr && <span style={{ color: "red", marginLeft: "47px" }}>{addresserr}</span>}
+        </div>
+        <div className=''>
           <div className='user-info'>
             <div className='user-input'>
-              <input type='text' id='city' onChange={(e) => setCity(e.target.value)} /><br />
               <label>City</label>
+              <input type='text' id='city' onChange={(e) => setCity(e.target.value)} /><br />
               {cityerr && <span style={{ color: "red", marginLeft: "47px" }}>{cityerr}</span>}
             </div>
             <div className='user-input'>
-              <input type='text' id='state' onChange={(e) => setState(e.target.value)} /><br />
               <label>State</label>
+              <input type='text' id='state' onChange={(e) => setState(e.target.value)} /><br />
               {stateerr && <span style={{ color: "red", marginLeft: "47px" }}>{stateerr}</span>}
             </div>
-          </div>
-          <div className='user-input'>
-            <input type='text' id='zipcode' onChange={(e) => setZipcode(e.target.value)} />
-            <label>Postal / Zip Code</label>
-            {codeerr && <span style={{ color: "red", marginLeft: "47px" }}>{codeerr}</span>}
+            <div className='user-input'>
+              <label>Zip/postal code</label>
+              <input type='text' id='zipcode' onChange={(e) => setZipcode(e.target.value)} />
+              {codeerr && <span style={{ color: "red", marginLeft: "47px" }}>{codeerr}</span>}
+            </div>
           </div>
         </div>
-        <button className='cheak-out-btn' onClick={() => makepayment()}>Checkout</button>
-
+        <div>
+          <button className='footer' onClick={() => makepayment()}>Checkout</button>
+        </div>
       </form>
     </div>
   );

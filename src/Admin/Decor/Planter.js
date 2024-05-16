@@ -13,15 +13,14 @@ function Planter() {
     const [wishlist, setWishlist] = useWishlist();
     const [hoveredProduct, setHoveredProduct] = useState(null);
 
-    function addtowishlist(val) {
-        setWishlist([...wishlist, val])
-        localStorage.setItem("wishlist", JSON.stringify([...wishlist, val]))
-        alert('Item Added To wishlist')
-    }
     function addtocart(val) {
         setcart([...cart, val])
         localStorage.setItem("cart", JSON.stringify([...cart, val]))
-        alert("item added to cart")
+    }
+
+    function addtowishlist(val) {
+        setWishlist([...wishlist, val])
+        localStorage.setItem("wishlist", JSON.stringify([...wishlist, val]))
     }
 
     async function allplanter() {
@@ -46,14 +45,24 @@ function Planter() {
             </div>
             <Decor />
             <h1>PLANTERS & ACCESSORIES</h1>
-            <div className='decor-page-api '>
+            <div className='wishlist-tbody'>
                 {
                     product.map((val, index) => (
-                        <tr key={index}>
+                        <tr className='page-img' key={index}>
                             <td>
-                                {val.category === 'Planter' && (
-                                    <div className="product-container">
-                                        <img src={`http://localhost:1202/uploads/Decor/Planter/${val.productImage}`} alt={val.productName} />
+                                <div>
+                                    {val.category === 'Planter' && (
+                                        <div onClick={() => navigate(`/product/${val._id}`)} className='page-imd-details'>
+                                            <img src={`http://localhost:1202/uploads/Decor/Planter/${val.productImage}`} alt={val.productName} />
+                                        </div>
+                                    )}
+                                    {val.category === 'Planter' && (
+                                        <div className='product-desc'>
+                                            <div className='product-desc1'>{val.productName}</div>
+                                            <div className='product-desc2'>${val.productPrice}</div>
+                                        </div>
+                                    )}
+                                    <div className='product-detail-cart'>
                                         <NavLink onClick={() => addtowishlist(val)}>
                                             {hoveredProduct === index ? (
                                                 <FaHeart className="favourite-icon" />
@@ -61,17 +70,8 @@ function Planter() {
                                                 <FaRegHeart className="favourite-icon" onMouseEnter={() => setHoveredProduct(index)} onMouseLeave={() => setHoveredProduct(null)} />
                                             )}
                                         </NavLink>
+                                        <button className='page-btn' onClick={() => addtocart(val)}>Add To Cart</button>
                                     </div>
-                                )}
-                                {val.category === 'Planter' && (
-                                    <div className='product-des'>
-                                        <div className='product-des1'>{val.productName}</div>
-                                        <div className='product-des2'>Price : {val.productPrice}</div>
-                                    </div>
-                                )}
-                                <div className='product-detail-cart'>
-                                    <p onClick={() => navigate(`/product/${val._id}`)}>More Details  </p>
-                                    <p onClick={() => addtocart(val)}>Add To Cart</p>
                                 </div>
                             </td>
                         </tr>

@@ -9,6 +9,15 @@ import { FaClipboardList } from "react-icons/fa";
 import { Layout, Menu } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { FaBorderAll } from "react-icons/fa";
+import Topdeal from './Dashpage/Topdeal';
+import Chartbox from './Dashpage/Chartbox';
+import Productbox from './Dashpage/Productbox';
+import Totalrevenue from './Dashpage/Totalrevenue';
+import Totalratio from './Dashpage/Totalratio';
+import Totalvisit from './Dashpage/Totalvisit';
+import Profileern from './Dashpage/Profileern'
+import Piechart from './Dashpage/Piechart';
+import Revenuechart from './Dashpage/Revenuechart';
 
 function Admindashboard() {
   const navigate = useNavigate();
@@ -22,8 +31,7 @@ function Admindashboard() {
         <Layout>
           <Sider>
             <div className='logo'>
-              <span className='sm-logo '>HD</span>
-              <span className='lg-logo '>Home Decor</span>
+              <p className='lg-logo '>Home Decor</p>
             </div>
             <div className='dash-link'>
               <Menu
@@ -92,9 +100,38 @@ function Admindashboard() {
                   },
                 ]}
               />
-              <NavLink className='admin-signout' onClick={handleLogout} to='/'><p>Sign Out</p></NavLink>
+              <NavLink className='admin-signout' onClick={handleLogout} to='/Login'><p>Sign Out</p></NavLink>
             </div>
           </Sider>
+          <div className='dashbord'>
+            <div className='dash box1'>
+              <Topdeal />
+            </div>
+            <div className='dash box2'>
+              <Chartbox />
+            </div>
+            <div className='dash box3'>
+              <Totalrevenue />
+            </div>
+            <div className='dash box4'>
+              <Piechart />
+            </div>
+            <div className='dash box5'>
+              <Productbox />
+            </div>
+            <div className='dash box6'>
+              <Totalratio />
+            </div>
+            <div className='dash box7'>
+              <Revenuechart />
+            </div>
+            <div className='dash box8'>
+              <Totalvisit />
+            </div>
+            <div className='dash box9'>
+              <Profileern />
+            </div>
+          </div>
         </Layout>
       </div>
     </div>

@@ -16,6 +16,7 @@ function Edituser() {
     const { data } = await axios.put(`http://localhost:1202/edituser`, {
       Fname, Lname, Email, Address
     })
+    
     if (data?.error) {
       console.log(data?.error)
     } else {
@@ -38,18 +39,30 @@ function Edituser() {
   }, [userauth?.user])
 
   return (
-    <div className='form'>
-      <div className='formbody'>
-        <div className='register'>
-          <form onSubmit={updateuser}>
-            <input type='text' className='forminput' value={Fname} onChange={(e) => setFname(e.target.value)} /><br />
-            <input type='text' className='forminput' value={Lname} onChange={(e) => setLname(e.target.value)} /><br />
-            <input type='email' className='forminput' value={Email} onChange={(e) => setEmail(e.target.value)} /><br />
-            <input type='text' className='forminput' value={Address} onChange={(e) => setAddress(e.target.value)} /><br />
-            <br />
-            <button className='footer'>UPDATE</button>
-          </form>
-        </div>
+    <div>
+      <img className="form-img" src='/Assets/edit_background.jpg' alt="" />
+      <div className="form">
+        <form onSubmit={updateuser}>
+          <div className="user-info">
+            <div className='user-input'>
+              <label className="form-lable">First name </label>
+              <input id="Fname" className="form-input" type="text" placeholder=" First Name" value={Fname} onChange={(e) => setFname(e.target.value)} />
+            </div>
+            <div className='user-input'>
+              <label className="form-lable">Last name </label>
+              <input id="Lname" className="form-input" type="text" placeholder=" Last Name" value={Lname} onChange={(e) => setLname(e.target.value)} />
+            </div>
+          </div>
+          <div className="user-input">
+            <label className="form-lable">Email </label>
+            <input id="email" className="form-input" type="email" placeholder=" Email" value={Email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <div className="user-input">
+            <label className="form-lable">Address </label>
+            <input id="address" className="form-input" type="text" placeholder=" Address" value={Address} onChange={(e) => setAddress(e.target.value)} />
+          </div>
+          <button className="footer">Update</button>
+        </form>
       </div>
     </div>
   )

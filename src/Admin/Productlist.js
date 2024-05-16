@@ -3,213 +3,229 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { Table } from 'antd';
+import { FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+
+const columns = [
+    {
+        title: "SNo",
+        dataIndex: "index",
+    },
+    {
+        title: "Product Name",
+        dataIndex: "productName",
+    },
+    {
+        title: "Product Price",
+        dataIndex: "productPrice",
+    },
+    {
+        title: "Product Description",
+        dataIndex: "productDescription",
+    },
+    {
+        title: "Product Image",
+        dataIndex: "productImage",
+        render: (text, product) => {
+            let imageUrl;
+            switch (product.category) {
+                case 'Crystal':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Crystel/${product.productImage}`;
+                    break;
+                case 'Candlestand':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Candlestand/${product.productImage}`;
+                    break;
+                case 'Decorplates':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Decorplates/${product.productImage}`;
+                    break;
+                case 'Decorstorage':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Decorstorage/${product.productImage}`;
+                    break;
+                case 'Fineporcelain':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Fineporcelain/${product.productImage}`;
+                    break;
+                case 'Flowerarrang':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Flowerarrang/${product.productImage}`;
+                    break;
+                case 'Gingerjar':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Gingerjar/${product.productImage}`;
+                    break;
+                case 'Photofram':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Photofram/${product.productImage}`;
+                    break;
+                case 'Planter':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Planter/${product.productImage}`;
+                    break;
+                case 'Tabletopdecor':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Tabletopdecor/${product.productImage}`;
+                    break;
+                case 'Clock':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Clock/${product.productImage}`;
+                    break;
+                case 'Animal':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Animal/${product.productImage}`;
+                    break;
+                case 'Castiron':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Castiron/${product.productImage}`;
+                    break;
+                case 'Incenseholder':
+                    imageUrl = `http://localhost:1202/uploads/Decor/Incenseholder/${product.productImage}`;
+                    break;
+                case 'New Decor':
+                    imageUrl = `http://localhost:1202/uploads/Newarrive/Newdecor/${product.productImage}`;
+                    break;
+                case 'New Ligting':
+                    imageUrl = `http://localhost:1202/uploads/Newarrive/Newligting/${product.productImage}`;
+                    break;
+                case 'New Kitchne':
+                    imageUrl = `http://localhost:1202/uploads/Newarrive/Newkitchne/${product.productImage}`;
+                    break;
+                case 'Cakestand':
+                    imageUrl = `http://localhost:1202/uploads/Kitchen/Cakestand/${product.productImage}`;
+                    break;
+                case 'Dinnerplates':
+                    imageUrl = `http://localhost:1202/uploads/Kitchen/Dinnerplates/${product.productImage}`;
+                    break;
+                case 'Doubleglass':
+                    imageUrl = `http://localhost:1202/uploads/Kitchen/Doubleglass/${product.productImage}`;
+                    break;
+                case 'Drinkglass':
+                    imageUrl = `http://localhost:1202/uploads/Kitchen/Drinkglass/${product.productImage}`;
+                    break;
+                case 'Jar':
+                    imageUrl = `http://localhost:1202/uploads/Kitchen/Jar/${product.productImage}`;
+                    break;
+                case 'Mug':
+                    imageUrl = `http://localhost:1202/uploads/Kitchen/Mug/${product.productImage}`;
+                    break;
+                case 'Teaware':
+                    imageUrl = `http://localhost:1202/uploads/Kitchen/Teaware/${product.productImage}`;
+                    break;
+                case 'Bedroomlight':
+                    imageUrl = `http://localhost:1202/uploads/Light/Bedroomlight/${product.productImage}`;
+                    break;
+                case 'Ceilinglight':
+                    imageUrl = `http://localhost:1202/uploads/Light/Ceilinglight/${product.productImage}`;
+                    break;
+                case 'Crystallight':
+                    imageUrl = `http://localhost:1202/uploads/Light/Crystallight/${product.productImage}`;
+                    break;
+                case 'Livingroom':
+                    imageUrl = `http://localhost:1202/uploads/Light/Livingroom/${product.productImage}`;
+                    break;
+                case 'Tablelamp':
+                    imageUrl = `http://localhost:1202/uploads/Light/Tablelamp/${product.productImage}`;
+                    break;
+                case 'Woodlamp':
+                    imageUrl = `http://localhost:1202/uploads/Light/Woodlamp/${product.productImage}`;
+                    break;
+                case 'Wallsconses':
+                    imageUrl = `http://localhost:1202/uploads/Light/Wallsconses/${product.productImage}`;
+                    break;
+                case 'Wallplates':
+                    imageUrl = `http://localhost:1202/uploads/Walldecor/Wallplates/${product.productImage}`;
+                    break;
+                case 'Olipaint':
+                    imageUrl = `http://localhost:1202/uploads/Walldecor/Olipaint/${product.productImage}`;
+                    break;
+                case 'Wallmirror':
+                    imageUrl = `http://localhost:1202/uploads/Walldecor/Wallmirror/${product.productImage}`;
+                    break;
+                case 'Framedart':
+                    imageUrl = `http://localhost:1202/uploads/Walldecor/Framedart/${product.productImage}`;
+                    break;
+                case 'Wallvases':
+                    imageUrl = `http://localhost:1202/uploads/Walldecor/Wallvases/${product.productImage}`;
+                    break;
+                case 'Chair':
+                    imageUrl = `http://localhost:1202/uploads/Furniture/Chair/${product.productImage}`;
+                    break;
+                case 'Tables':
+                    imageUrl = `http://localhost:1202/uploads/Furniture/Tables/${product.productImage}`;
+                    break;
+                case 'Ottomans':
+                    imageUrl = `http://localhost:1202/uploads/Furniture/Ottomans/${product.productImage}`;
+                    break;
+                case 'Bathset':
+                    imageUrl = `http://localhost:1202/uploads/Bathdecor/Bathset/${product.productImage}`;
+                    break;
+                case 'Basin':
+                    imageUrl = `http://localhost:1202/uploads/Bathdecor/Basin/${product.productImage}`;
+                    break;
+                default:
+                    imageUrl = '';
+                    break;
+            }
+            return imageUrl && <img src={imageUrl} alt={product.productName} style={{ maxWidth: '200px', maxHeight: '200px' }} />;
+        }
+    },
+    {
+        title: "Action",
+        dataIndex: "action",
+    },
+];
 
 function Productlist() {
-    const [productsByCategory, setProductsByCategory] = useState({});
+    const [products, setProducts] = useState([]);
     const navigate = useNavigate();
 
-    async function productdelete(id) {
-        const response = await axios.delete(`http://localhost:1202/deleteproduct/${id}`);
-        if (response.status === 200) {
-            allproduct();
-        } else {
-            alert("product not deleted");
-        }
-    }
-
-    console.log(productsByCategory);
-
-    const allproduct = async () => {
-        const response = await axios.get("http://localhost:1202/allproduct");
-        console.log(response);
-        if (response.status === 200) {
-            const categorizedProducts = groupProductsByCategory(response.data.products);
-            setProductsByCategory(categorizedProducts);
-        }
-    };
-
-    const groupProductsByCategory = (products) => {
-        const categorizedProducts = {};
-        products.forEach((product) => {
-            const category = product.category;
-            if (!categorizedProducts[category]) {
-                categorizedProducts[category] = [];
-            }
-            categorizedProducts[category].push(product);
-        });
-        return categorizedProducts;
-    };
-
     useEffect(() => {
-        allproduct();
+        fetchProducts();
     }, []);
 
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get("http://localhost:1202/allproduct");
+            if (response.status === 200) {
+                setProducts(response.data.products);
+            }
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    };
+
+    const handleEdit = (productId) => {
+        navigate(`/Dashboard/admin/Editproduct/${productId}`);
+    };
+
+    const handleDelete = async (productId) => {
+        try {
+            const response = await axios.delete(`http://localhost:1202/deleteproduct/${productId}`);
+            if (response.status === 200) {
+                fetchProducts();
+            } else {
+                alert("Product not deleted");
+            }
+        } catch (error) {
+            console.error("Error deleting product:", error);
+        }
+    };
+
+    const data = products.map((product, index) => ({
+        key: product._id,
+        index: index + 1,
+        productName: product.productName,
+        productPrice: product.productPrice,
+        productDescription: product.productDescription,
+        productImage: product.productImage,
+        action: (
+            <div>
+                <span className="actionn" onClick={() => handleEdit(product._id)}><FaRegEdit /></span>
+                <span className="action2" onClick={() => handleDelete(product._id)}><MdDelete /></span>
+            </div>
+        ),
+        category: product.category,
+    }));
+
     return (
-        <div className="productlist">
-            <NavLink to="/Dashboard/admin/Addproduct" className="icon-link">
-                <ArrowLeftOutlined className="user-icon" />
-            </NavLink>
-            <h1>ALL PRODUCTS</h1>
-            {Object.keys(productsByCategory).map((category) => (
-                <div className="productlistcateg" key={category}>
-                    <h2>{category}</h2>
-                    <table key={category}>
-                        <thead>
-                            <tr>
-                                <th>Sno.</th>
-                                <th>Product Name</th>
-                                <th>Product Price</th>
-                                <th>Product Description</th>
-                                <th>Product Image</th>
-                                <th className="productlist-btn">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody className="proutlist-tbody">
-                            {productsByCategory[category].map((product, index) => (
-                                <tr key={product._id}>
-                                    <td>{index + 1}</td>
-                                    <td>{product.productName}</td>
-                                    <td>{product.productPrice}</td>
-                                    <td>{product.productDescription}</td>
-                                    <td>
-                                        {product.category === 'Crystal' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Crystel/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Candlestand' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Candlestand/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Decorplates' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Decorplates/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Decorstorage' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Decorstorage/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Fineporcelain' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Fineporcelain/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Flowerarrang' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Flowerarrang/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Gingerjar' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Gingerjar/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Photofram' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Photofram/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Planter' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Planter/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Tabletopdecor' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Tabletopdecor/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Clock' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Clock/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Animal' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Animal/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Castiron' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Castiron/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Incenseholder' && (
-                                            <img src={`http://localhost:1202/uploads/Decor/Incenseholder/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'New Decor' && (
-                                            <img src={`http://localhost:1202/uploads/Newarrive/Newdecor/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'New Ligting' && (
-                                            <img src={`http://localhost:1202/uploads/Newarrive/Newligting/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'New Kitchne' && (
-                                            <img src={`http://localhost:1202/uploads/Newarrive/Newkitchne/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Cakestand' && (
-                                            <img src={`http://localhost:1202/uploads/Kitchen/Cakestand/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Dinnerplates' && (
-                                            <img src={`http://localhost:1202/uploads/Kitchen/Dinnerplates/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Doubleglass' && (
-                                            <img src={`http://localhost:1202/uploads/Kitchen/Doubleglass/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Drinkglass' && (
-                                            <img src={`http://localhost:1202/uploads/Kitchen/Drinkglass/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Jar' && (
-                                            <img src={`http://localhost:1202/uploads/Kitchen/Jar/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Mug' && (
-                                            <img src={`http://localhost:1202/uploads/Kitchen/Mug/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Teaware' && (
-                                            <img src={`http://localhost:1202/uploads/Kitchen/Teaware/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Bedroomlight' && (
-                                            <img src={`http://localhost:1202/uploads/Light/Bedroomlight/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Ceilinglight' && (
-                                            <img src={`http://localhost:1202/uploads/Light/Ceilinglight/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Crystallight' && (
-                                            <img src={`http://localhost:1202/uploads/Light/Crystallight/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Livingroom' && (
-                                            <img src={`http://localhost:1202/uploads/Light/Livingroom/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Tablelamp' && (
-                                            <img src={`http://localhost:1202/uploads/Light/Tablelamp/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Woodlamp' && (
-                                            <img src={`http://localhost:1202/uploads/Light/Woodlamp/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Wallsconses' && (
-                                            <img src={`http://localhost:1202/uploads/Light/Wallsconses/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Wallplates' && (
-                                            <img src={`http://localhost:1202/uploads/Walldecor/Wallplates/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Olipaint' && (
-                                            <img src={`http://localhost:1202/uploads/Walldecor/Olipaint/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Wallmirror' && (
-                                            <img src={`http://localhost:1202/uploads/Walldecor/Wallmirror/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Framedart' && (
-                                            <img src={`http://localhost:1202/uploads/Walldecor/Framedart/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Wallvases' && (
-                                            <img src={`http://localhost:1202/uploads/Walldecor/Wallvases/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Chair' && (
-                                            <img src={`http://localhost:1202/uploads/Furniture/Chair/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Tables' && (
-                                            <img src={`http://localhost:1202/uploads/Furniture/Tables/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Ottomans' && (
-                                            <img src={`http://localhost:1202/uploads/Furniture/Ottomans/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Bathset' && (
-                                            <img src={`http://localhost:1202/uploads/Bathdecor/Bathset/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                        {product.category === 'Basin' && (
-                                            <img src={`http://localhost:1202/uploads/Bathdecor/Basin/${product.productImage}`} alt={product.productName} />
-                                        )}
-                                    </td>
-                                    <td className="action">
-                                        <td className="actionn" onClick={() => navigate(`/Dashboard/admin/Editproduct/${product._id}`)}>
-                                            Edit
-                                        </td>
-                                        <td className="action2" onClick={() => productdelete(product._id)}>
-                                            Delete
-                                        </td>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            ))}
+        <div>
+            <div className="pro-list-icon">
+                <NavLink to="/Dashboard/admin" className="icon-link">
+                    <ArrowLeftOutlined className="user-icon" />
+                </NavLink></div>
+            <h1 className="productlist">ALL PRODUCTS</h1>
+            <Table columns={columns} dataSource={data} />
         </div>
     );
 }

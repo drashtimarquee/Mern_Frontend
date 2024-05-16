@@ -15,7 +15,7 @@ function Searchpage() {
 
     return (
         <div className='text-container' >
-            <h6>SEARCH FOR "{values.keyword}"</h6>
+            <h4>SEARCH FOR <span>"{values.keyword}"</span></h4>
             <div className='search-result'>
                 {
                     values.result?.map((product) => (
@@ -145,7 +145,7 @@ function Searchpage() {
                             )}
                             <div className='product-des'>
                                 <div className='product-des1'>{product.productName}</div>
-                                <div className='product-des2'>Price : {product.productPrice}</div>
+                                <div className='product-des2'>{product.productPrice}</div>
                             </div>
                             <div className='product-detail-cart'>
                                 <p onClick={() => navigate(`/product/${product._id}`)}>More Details  </p>

@@ -29,7 +29,7 @@ function Navbar() {
     return (
         <header className='navbar'>
             <div className='nav-logo'>
-                <NavLink to="/"><img src="Assets/Logo.png" alt='' />THE DECOR CART</NavLink>
+                <NavLink to="/">THE DECOR CART</NavLink>
             </div>
             {
                 userauth?.user ? (

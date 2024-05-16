@@ -24,7 +24,7 @@ function Homepage() {
         <div className="home-text">
           <h3>Forged Beauty</h3>
           <p>The Art of Cast Iron</p>
-          <NavLink to=''>SHOP NOW</NavLink>
+          <button class="button-15" role="button">SHOP NOW</button>
         </div>
       </div>
       <div className='homepage2'>
@@ -48,7 +48,7 @@ function Homepage() {
         </div>
       </div>
       <div>
-        <NavLink to='/Homelight'><img src='Assets/Home2.JPG' className='home-img2' alt='' /></NavLink>
+        <NavLink to='/Homelight'><img src='Assets/Home2.JPG' className='home-img1' alt='' /></NavLink>
         <div className='homepage2'>
           <div className='home-image-column'>
             <NavLink to="/Bedlight"><img src="Assets/Lighting/badroom/Badlight2.jpg" alt='' /><p>BEDROOM LAMPS</p></NavLink>
@@ -71,7 +71,7 @@ function Homepage() {
         </div>
       </div>
       <div>
-        <NavLink to='/Home'><img src='Assets/Home3.WEBP' className='home-img2' alt='' /></NavLink>
+        <NavLink to='/Home'><img src='Assets/Home3.WEBP' className='home-img1' alt='' /></NavLink>
         <div className='homepage2'>
           <div className='home-image-column'>
             <NavLink to="/Chair"><img src="Assets/Furniture/Chair/Chair6.jpg" alt='' /><p>CHAIRS</p></NavLink>
@@ -141,6 +141,12 @@ function Homepage() {
           </div>
           <div className='home-image-column-footer'>
             <NavLink to="/Bathset"><img src="Assets/Bathdecor/Bathset/Bathset6.jpg" className="home-footer-img" alt='' /><p>BATHSET</p></NavLink>
+          </div>
+          <div className='home-image-column-footer'>
+            <NavLink to="/Wallsconses"><img src="Assets/Lighting/Wallscenses/Wallsc1.jpg" className="home-footer-img" alt='' /><p>WALL SCENSES</p></NavLink>
+          </div>
+          <div className='home-image-column-footer'>
+            <NavLink to="/Incenseholder"><img src="Assets/Decor/Incenser/Incenser4.jpg" className="home-footer-img" alt='' /><p>INCENSE HOLDER</p></NavLink>
           </div>
           <div className='home-image-column-footer'>
             <NavLink to="/Wallsconses"><img src="Assets/Lighting/Wallscenses/Wallsc1.jpg" className="home-footer-img" alt='' /><p>WALL SCENSES</p></NavLink>
